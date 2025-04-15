@@ -9,13 +9,13 @@ bool iniciarServidor() {
     PROCESS_INFORMATION pi = {0};
     si.cb = sizeof(si);
 
-    // Caminho para o executável do servidor (ajuste conforme necessário)
-    string caminhoServidor = "Servidor.exe";  // Ou o caminho completo, ex: "C:\\meu_projeto\\Servidor.exe"
+    // Caminho para o executável do servidor
+    string caminhoServidor = "Servidor.exe";
 
     // Tenta criar o processo do servidor
    if (!CreateProcessA(
         NULL,
-        const_cast<char*>(caminhoServidor.c_str()), // OK com CreateProcessA
+        const_cast<char*>(caminhoServidor.c_str()),
         NULL,
         NULL,
         FALSE,
@@ -24,17 +24,15 @@ bool iniciarServidor() {
         NULL,
         &si,
         &pi)) {
-    cerr << "Erro ao iniciar o servidor. Código: " << GetLastError() << endl;
-    return false;
-}
-
+            cerr << "Erro ao iniciar o servidor. Código: " << GetLastError() << endl;
+            return false;
+        }
 
     cout << "Servidor iniciado com sucesso. Aguardando conexão...\n";
 
-    // Espera um pequeno tempo para o servidor criar o pipe
     Sleep(1000);
 
-    // Fecha os handles do processo (não vamos interagir diretamente com ele aqui)
+    // Fecha os handles do processo
     CloseHandle(pi.hProcess);
     CloseHandle(pi.hThread);
     return true;
@@ -49,7 +47,7 @@ int main() {
         GENERIC_READ | GENERIC_WRITE,
         0, NULL, OPEN_EXISTING, 0, NULL);
 
-    // Se o pipe ainda não existir, inicia o servidor
+    // Se o pipe ainda não existir, inicia o servidor através de um processo
     if (Handle_Pipe == INVALID_HANDLE_VALUE) {
         cout << "Servidor não está rodando. Tentando iniciar...\n";
         if (iniciarServidor()) {
@@ -88,7 +86,7 @@ int main() {
             break;
         }
 
-        DWORD Bytes_Escritos;
+        DWORD Bytes_Escritos; // Comunicação com o pipe do servidor
         WriteFile(Handle_Pipe, Instrucao.c_str(), Instrucao.size(), &Bytes_Escritos, NULL);
 
         char respostaServidor[512];
