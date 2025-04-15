@@ -1,5 +1,7 @@
 # Sistema Cliente-Servidor com Named Pipes (Windows)
+
 Projeto realizado por: Gustavo Cadore da Silva, Lucas Rodrigues Pinheiro e Pedro Henrique Souza dos Santos.
+
 ---
 
 Este projeto é um sistema cliente-servidor desenvolvido em **C++** utilizando **Named Pipes do Windows** para comunicação entre processos. O servidor mantém um pequeno banco de dados em memória com persistência em arquivo, permitindo operações básicas de CRUD.
