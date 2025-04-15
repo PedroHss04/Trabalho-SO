@@ -1,10 +1,10 @@
-#Sistema Cliente-Servidor com Named Pipes (Windows)
+# Sistema Cliente-Servidor com Named Pipes (Windows)
 
 Este projeto é um sistema cliente-servidor desenvolvido em **C++** utilizando **Named Pipes do Windows** para comunicação entre processos. O servidor mantém um pequeno banco de dados em memória com persistência em arquivo, permitindo operações básicas de CRUD.
 
 ---
 
-##Funcionalidades
+## Funcionalidades
 
 ✅ Inserir novos registros  
 ✅ Consultar todos os registros ou por ID  
@@ -16,7 +16,7 @@ Este projeto é um sistema cliente-servidor desenvolvido em **C++** utilizando *
 
 ---
 
-##Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - C++
 - Windows API
